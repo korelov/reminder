@@ -1,0 +1,36 @@
+spring:
+  #  security:
+  #    oauth2:
+  #      client:
+  #        registration:
+  #          google:
+  #            client-id: ----------------------------------------------
+  #            client-secret: ---------------------------------------------------
+  #            scope: profile, email
+  #            redirect-uri: http://localhost:8080/login/oauth2/code/{registrationId}
+  #            client-name: Google
+  #        provider:
+  #          google:
+  #            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+  #            token-uri: https://oauth2.googleapis.com/token
+  #            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+  #            user-name-attribute: sub
+  jpa:
+    hibernate:
+      show-sql: true
+      ddl-auto: validate
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5433/reminder
+    username: postgres
+    password: 3012413
+    driverClassName: org.postgresql.Driver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        orm:
+          jdbc:
+            bind: TRACE

@@ -1,0 +1,13 @@
+SELECT * FROM public.users
+ORDER BY id ASC
+
+SELECT * FROM public.reminder
+ORDER BY id ASC
+
+SELECT * From public.reminder
+where user_id = 552;
+
+
+select * from users
+left join reminder
+on users.id = reminder.user_id;
