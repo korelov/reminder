@@ -25,12 +25,10 @@ spring:
     username: postgres
     password: 3012413
     driverClassName: org.postgresql.Driver
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        orm:
-          jdbc:
-            bind: TRACE
+  quartz:
+   job-store-type: memory
+telegram:
+  bot:
+    chatId: -------------
+    username: -------------
+    token: ------------------------
