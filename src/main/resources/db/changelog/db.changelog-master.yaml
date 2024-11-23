@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/202411232200-create-users.xml
+  - include:
+      file: db/changelog/202411232200-create-reminder.xml
+

@@ -10,8 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u LEFT JOIN FETCH u.reminders WHERE u.id = :id")
-    Optional<User> findUserWithRemindersById(@Param("id") Long id);
-
     Optional<User> findByOauthId(String oauthId);
 }

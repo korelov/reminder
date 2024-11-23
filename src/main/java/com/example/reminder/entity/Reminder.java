@@ -1,7 +1,11 @@
 package com.example.reminder.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDateTime;
 
@@ -10,9 +14,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "reminders")
 public class Reminder {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reminders_seq")
+    @SequenceGenerator(name = "reminders_seq", sequenceName = "reminders_seq", allocationSize = 1)
     private Long id;
     private String title;
     @Column(length = 4096)
@@ -20,6 +26,5 @@ public class Reminder {
     private LocalDateTime remind;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @ToString.Exclude
     private User user;
 }

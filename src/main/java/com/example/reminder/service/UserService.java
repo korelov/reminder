@@ -41,8 +41,12 @@ public class UserService {
 
     @Transactional
     public UserDtoRs getById(Long id) {
-        User user = userRepository.findUserWithRemindersById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
         return toDto(user);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 
     private UserDtoRs toDto(User user) {
