@@ -23,18 +23,19 @@ import java.util.Optional;
 public class ReminderService {
     private final ReminderRepository reminderRepository;
     private final UserRepository userRepository;
+    private final ReminderSchedulerService reminderSchedulerService;
+    private final TelegramBot telegramBot;
 
     public ReminderDtoRq createReminder(ReminderDtoRq reminderDtoRq) {
-
         User byId = userRepository.getReferenceById(reminderDtoRq.getUserId());
         Reminder reminder = Reminder.builder()
                 .title(reminderDtoRq.getTitle())
                 .description(reminderDtoRq.getDescription())
                 .remind(reminderDtoRq.getRemind())
                 .user(byId)
-//                .user(byId.getId())
                 .build();
         reminderRepository.save(reminder);
+        reminderSchedulerService.scheduleReminder(reminder, telegramBot.getChatId().toString());
         return reminderDtoRq;
     }
 
@@ -74,7 +75,6 @@ public class ReminderService {
         response.put("page", allByUserIdDto.getNumber());
         response.put("totalPages", allByUserIdDto.getTotalPages());
         return response;
-
     }
 
     private ReminderDtoRs toDto(Reminder reminder) {
@@ -85,5 +85,4 @@ public class ReminderService {
                 .remind(reminder.getRemind())
                 .build();
     }
-
 }
