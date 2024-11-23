@@ -37,7 +37,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
             throw new RuntimeException("Ошибка отправки сообщения в Telegram", e);
         }
     }
